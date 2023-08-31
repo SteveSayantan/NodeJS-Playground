@@ -19,7 +19,7 @@ const authenticateUser= async (req,res,next)=>{
     }
 }
 
-const authorizePermission=(...roles)=>{     //This middleware will take the roles which we want to give access to the route as args. If our application has more than two types of role i.e. admin and user, then this setup is useful
+const authorizePermission=(...roles)=>{     //This middleware will take the roles as args for which we want to give access to a route . If our application has more than two types of role i.e. admin and user, then this setup is useful
 
     //When this middleware will be passed with arguments to the route, it will invoke this function right away. So, we have to return a function from this middleware which will serve as a callback function to the route
     return (req,res,next)=>{

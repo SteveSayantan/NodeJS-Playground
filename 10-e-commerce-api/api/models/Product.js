@@ -60,8 +60,8 @@ const ProductSchema= new mongoose.Schema({
         type:Number,
         default:0
     },
-    user:{
-        type:mongoose.Types.ObjectId,
+    user:{  // This property refers to the user (admin) who has created that product
+        type:mongoose.Types.ObjectId,   
         ref:'User',
         required:[true,"Please provide User"]
     }
@@ -70,7 +70,12 @@ const ProductSchema= new mongoose.Schema({
 
 },{timestamps:true,toJSON:{virtuals:true},toObject:{virtuals:true}})    //To enable the virtual populating, we need to pass these properties.
 
+/* 
+    In Review Schema, we had 'user' and 'product' properties already existing which later are used for populating. But here, we do not have 'reviews' property in Product Schema,
+    hence we have to do the following song and dance for creating that property virtually.
 
+    Now, populating that virtual property is called virtual populating. 
+*/
 ProductSchema.virtual('reviews',{   // 'reviews' is the name of the virtual property. This name should be the same in productController @ line 21
    
     ref:'Review',   // Refer to the Review model

@@ -34,8 +34,10 @@ const UserSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  
   // Below properties are set up as per requirement, therefore no need to add 'required' property.
-  verified:Date,
+
+  verified:Date,    // This holds the date of verification
 
   passwordToken:{type:String},
   

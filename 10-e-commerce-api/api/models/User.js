@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-const validatorPac= require('validator'); // This package will check the validation of the email
+const validatorPac= require('validator'); // This package will check the validity of the email
 
 const bcrypt= require('bcryptjs');
 
@@ -40,7 +40,7 @@ UserSchema.pre('save', async function(next){    // ** This hook is invoked befor
     // console.log(this.modifiedPaths());       //Returns an array of modified properties
     // console.log(this.isModified('name'));    //Checks if the provided property is modified, returns Boolean 
 
-    if(!this.isModified('password')) return;    //If the password is not modified, no need to execute the rest .
+    if(!this.isModified('password')) return;    //If the password is not modified, no need to execute the rest . When a new user is created, this.isModified(password) will return true
 
     const salt= await bcrypt.genSalt(10);
     const hashedPassword= await bcrypt.hash(this.password, salt);

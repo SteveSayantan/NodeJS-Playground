@@ -5,7 +5,7 @@ const CustomError= require('../errors');
 const cloudinary= require('cloudinary').v2; //USE V2 
 
 
-const uploadProductImageLocal= async (req,res)=>{ // This is for uploading images to the server itself
+const uploadProductImageLocal= async (req,res)=>{ // This is for uploading images to the server itself, here we do not need the useTempFiles feature of express-file-upload package.
 
     // console.log(req.files);
 

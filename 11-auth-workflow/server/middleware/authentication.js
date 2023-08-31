@@ -17,7 +17,7 @@ const authenticateUser = async (req, res, next) => {
    const payload= isTokenValid(refreshToken); // If no refreshToken is present, it will throw error
    const existingToken = await Token.findOne({user:payload.user.userId,refreshToken:payload.refreshToken})
 
-   if(!existingToken || !existingToken.isValid){
+   if(!existingToken || !existingToken?.isValid){
      throw new CustomError.UnauthenticatedError('Authentication Invalid')
    }
    attachCookiesToResponse({res,user:payload.user,refreshToken:existingToken.refreshToken}); // If refreshToken is present, send both accessToken and refreshToken cookies with the response

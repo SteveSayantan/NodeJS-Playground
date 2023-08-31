@@ -90,9 +90,9 @@ ReviewSchema.post('remove', async function(){ // ** This hook is invoked after d
 
     3. The code should look similar to AggregateIMG.jpg. In the match stage, the product property is hard coded intentionally. Here, we are filtering the reviews which match the product property. 
 
-    4. In the group stage, we are grouping the reviews and calculating the average Rating and number of Reviews with the help of different operators ($sum,$avg etc.). The name of the properties( averageRating,numOfReviews ) should be similar to what we have in our code.  
+    4. In the group stage, we are grouping the reviews with same productId and calculating the average Rating and number of Reviews with the help of different operators ($sum,$avg etc.). The name of the properties( averageRating,numOfReviews ) need not to be similar to what we have in our code.  
 
-    5. _id property in the group stage, is given null as we have to consider all the reviews that appear after the match stage. We could have set that as '$product' too (Use the '') to group by the 'product' property. It won't make any change as all the reviews that appear after match stage, have similar product property.
+    5. _id property in the group stage, is given null. We could have set that as '$product' too (Use the '') to group by the 'product' property. It won't make any change as all the reviews in a group , have same product property.
 
     6. If we had to group based on some property (e.g. rating) that may change wrt to each review of the same product, setting that property (e.g. '$rating') as _id, makes more sense. Watch the 327. additional Group id example video lecture for clarity.
 
@@ -101,6 +101,8 @@ ReviewSchema.post('remove', async function(){ // ** This hook is invoked after d
     8. For further details on grouping, checkout https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
 
     9. Feel free to watch the video again. 
+
+    10. All these steps are performed to get the code snippet, using which we will set aggregate pipeline from our code
 */
 
 

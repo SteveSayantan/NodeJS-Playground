@@ -8,7 +8,7 @@ const register= async(req,res)=>{
     const {email}= req.body;
     const emailAlreadyExists= await User.findOne({email});
     if(emailAlreadyExists){
-        throw new CustomError('Email Already Exists')
+        throw new CustomError.BadRequestError('Email Already Exists')
     }
 
     //Creating the user
@@ -65,7 +65,7 @@ const logout= async(req,res)=>{
 
     //Here we are updating the value of the previously sent cookie with a random string
 
-    res.cookie('token','logout',{expires:new Date(Date.now()+5*1000)}); //This cookie will be expired within 5 sec. In a browser we check for that (but not in postman).
+    res.cookie('token','logout',{httpOnly:true,expires:new Date(Date.now()+5*1000)}); //This cookie will be expired within 5 sec. In a browser we check for that (but not in postman).
     //If we do not add the extra 5 seconds, the cookie will expire immediately after creation and an empty cookie (or no cookie) will be sent.
 
     res.status(StatusCodes.OK).json({msg:'Logged Out'})

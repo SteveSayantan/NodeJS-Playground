@@ -20,7 +20,7 @@ const register = async (req, res) => {
   const isFirstAccount = (await User.countDocuments({})) === 0;
   const role = isFirstAccount ? 'admin' : 'user';
 
-  const verificationToken=crypto.randomBytes(40).toString('hex') // This will create 40 random bytes and turn it into a string which will be hex encoded.
+  const verificationToken=crypto.randomBytes(40).toString('hex') // This will create 40 random bytes and turn it into a hex string (hex-encoding).
 
 
   const user = await User.create({ name, email, password, role,verificationToken });
@@ -93,7 +93,7 @@ const login = async (req, res) => {
   }
 
 
-  refreshToken= crypto.randomBytes(40).toString('hex');
+  refreshToken= crypto.randomBytes(40).toString('hex'); // This hex string will be stored in db and will be used to construct refresh token
   const userAgent= req.headers['user-agent']; // Getting the value of 'user-agent' header
   const ip= req.ip;   // Getting the value of ip property from req object
   const userToken= {refreshToken,ip,userAgent,user:user._id};
@@ -195,9 +195,9 @@ const resetPassword= async(req,res)=>{
 
   4. After verification of Email, when the user logs in for the first time, both of the token are sent as cookies.
 
-  5. If the accessToken expires but the refreshToken is active, the authenticateUser middleware will attach both of them as cookies to the response each time.
+  5. If the accessToken expires but the refreshToken is active, user can log in and the authenticateUser middleware will attach both of them as cookies to the response each time.
 
-  6. But if the refreshToken expires, the user has to login.
+  6. But if the refreshToken expires, the user has to login using credentials.
 
   7. Whenever the user opens the frontend, it makes a request to the showMe route and both of the tokens are renewed, therefore the chances of sudden expiration of cookies are less
 

@@ -36,7 +36,7 @@ app.use(fileUpload({useTempFiles:true})); //This is how we invoke the file-uploa
 
 
 app.get('/',(req,res)=>{
-  res.send("<h1>File Upload Starter</h1>")
+  res.send("<h1>File Upload Service</h1>")
 })
 
 app.use('/api/v1/products',productRouter);

@@ -36,7 +36,7 @@ const getAllReviews= async (req,res)=>{
 
             3. This only takes effect in the response we get. No changes are made to data stored in the DB.
 
-            Here, The 'product' and 'user' properties (which already refer to some other models) of all the reviews are populated with the given fields. 
+            Here, The existing 'product' and 'user' properties (which already refer to some other models) of all the reviews are populated with the given fields. 
     */
 
     const reviews= await Review.find({}).
@@ -67,6 +67,7 @@ const updateReview= async (req,res)=>{
 
     checkPermissions(req.user,review.user);
 
+    // If the user enters invalid data, the schema will throw error as we are using save() method
     review.rating=rating;
     review.title=title;
     review.comment=comment;

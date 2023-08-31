@@ -8,7 +8,9 @@ const createJWT = ({ payload }) => {
 const isTokenValid = ( token ) => jwt.verify(token, process.env.JWT_SECRET);
 
 const attachCookiesToResponse = ({ res, user,refreshToken }) => {
-
+/* 
+  The accessToken is made of the user credentials. But the refreshToken is made of user credentials as well as a hex string
+*/
   const accessTokenJWT = createJWT({ payload:{ user }});    // Passing an object to the createJWT function with  'user' property inside 'payload'
   const refreshTokenJWT = createJWT({ payload:{ user,refreshToken }});  // Passing an object to the createJWT function with 'user' and 'refreshToken' properties inside 'payload'
 

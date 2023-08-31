@@ -14,7 +14,7 @@ const getSingleUser= async (req,res)=>{
     if(!user){
         throw new CustomError.NotFoundError('No User Exists with id : '+req.params.id);
     }
-    checkPermissions(req.user,user._id);    //Here, **user._id is an object, not a string**
+    checkPermissions(req.user,user._id);    //Here, **user._id is of type object, not a string, checkout mongoose docs**
     res.status(StatusCodes.OK).json({user});
 }
 
