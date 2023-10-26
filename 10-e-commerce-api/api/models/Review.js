@@ -31,7 +31,7 @@ const ReviewSchema= new mongoose.Schema({
 
 ReviewSchema.index({user:1,product:1},{unique:true})    //Setting the unique property for both user and product for restricting user from making multiple reviews for a product. However, setting the 'unique' property separately on both of these will not work in this case.
 
-
+// All of the subsequent 'this' refers to the Review model.
 
 ReviewSchema.statics.calculateAvgRating = async function (productId){       // Using 'statics', we attach a function to the **Schema** and we can use that function inside schema only.This is completely different from 'methods' which is used to attach functions to the ** instance ** created from a schema
 
