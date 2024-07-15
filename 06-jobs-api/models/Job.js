@@ -18,7 +18,7 @@ const JobSchema= new mongoose.Schema({
     },
     createdBy:{
         type:mongoose.Types.ObjectId, //This will have the value of id of the user. While creating a job, we are associating it with an user who creates that job
-        ref:'user', //The name of the model which provides the id, 
+        ref:'user', //The name of the model which provides the id, check https://mongoosejs.com/docs/api/schematype.html#SchemaType.prototype.ref()
         required:[true,'Please provide user']
     }
 },{timestamps:true}) // If it is set to true, mongoose will add createdAt and updatedAdd properties to the documents

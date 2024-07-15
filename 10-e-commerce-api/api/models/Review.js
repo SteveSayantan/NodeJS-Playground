@@ -29,11 +29,17 @@ const ReviewSchema= new mongoose.Schema({
     }
 },{timestamps:true})
 
-ReviewSchema.index({user:1,product:1},{unique:true})    //Setting the unique property for both user and product for restricting user from making multiple reviews for a product. However, setting the 'unique' property separately on both of these will not work in this case.
+//Here, we create a compound unique-index using the user and product properties,i.e. we want to search for a Review using these two fields, and they must not store duplicate values.
+// As the compound index must be unique, each user can create only one review per product.
+ReviewSchema.index({user:1,product:1},{unique:true})  // we want the index entries to be stored in ascending sorted order of user and product.  
+    
+// However, setting the 'unique' property separately on both of these would stop a user to provide reviews for different products and storing more than one review for a product. Details: https://www.mongodb.com/docs/manual/indexes/
 
-// All of the subsequent 'this' refers to the Review model.
 
-ReviewSchema.statics.calculateAvgRating = async function (productId){       // Using 'statics', we attach a function to the **Schema** and we can use that function inside schema only.This is completely different from 'methods' which is used to attach functions to the ** instance ** created from a schema
+
+// All of the subsequent 'this' refers to a Review document .
+
+ReviewSchema.statics.calculateAvgRating = async function (productId){       // Using 'statics', we attach a function to the **Model** and we can use that function with the model only.This is completely different from 'methods' which is used to attach functions to the ** instance/document ** created from model which is compiled from a schema
 
     const result= await this.aggregate(    // Passing the 'agg' array collected from mongo atlas in this.aggregate method. This step actually creates the aggregation pipeline. The steps perfomed in mongoDB atlas were just for collecting the 'arr' array
        [ {
@@ -51,7 +57,7 @@ ReviewSchema.statics.calculateAvgRating = async function (productId){       // U
               }
             }
           }
-    ]
+        ]
     )
 
     // console.log(result);  // Ex. [ { _id: null, averageRating: 2.25, numOfReviews: 2 } ]
@@ -71,12 +77,12 @@ ReviewSchema.statics.calculateAvgRating = async function (productId){       // U
 
 ReviewSchema.post('save', async function(){ // ** This hook is invoked after creating a new review or while using review.save() after updating some properties of a review **
 
-    await this.constructor.calculateAvgRating(this.product) // calling the calculateAvgRating function created on the schema using 'constructor'. It takes the product property of this schema as an arg.
+    await this.model('Review').calculateAvgRating(this.product) // calling the calculateAvgRating function created on the model. It takes the product property of a Review document as an arg.
 })
 
 ReviewSchema.post('remove', async function(){ // ** This hook is invoked after deleting a review **
 
-     await this.constructor.calculateAvgRating(this.product)
+     await this.model('Review').calculateAvgRating(this.product)
 })
 
 
@@ -98,9 +104,9 @@ ReviewSchema.post('remove', async function(){ // ** This hook is invoked after d
 
     7. Click on 'Export to Language' button. Check the two boxes and copy only the 'agg' array . Now we have to set 'this.aggregate' method as shown above.
 
-    8. For further details on grouping, checkout https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
+    8. For further details on pipelining and grouping , checkout https://www.mongodb.com/docs/manual/core/aggregation-pipeline/ and https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
 
-    9. Feel free to watch the video again. 
+    9. Feel free to read the docs linked above. 
 
     10. All these steps are performed to get the code snippet, using which we will set aggregate pipeline from our code
 */

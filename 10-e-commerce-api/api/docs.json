@@ -1,0 +1,529 @@
+{
+    "info": {
+        "_postman_id": "6c1d664c-393a-49ed-9640-3937ebaf1e7d",
+        "name": "E-Commerce API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Logout User",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/auth/logout",
+                            "path": [
+                                "auth",
+                                "logout"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/auth/register",
+                            "path": [
+                                "auth",
+                                "register"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"email\":\"random@gmail.com\",\n    \"name\":\"random\",\n    \"password\":\"secret\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "LogIn User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/auth/login",
+                            "path": [
+                                "auth",
+                                "login"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"email\":\"random@gmail.com\",\n    \"password\":\"secret\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "Get All Users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/users",
+                            "path": [
+                                "users"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Single User",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/users/63348de5467fb6d6385cd705",
+                            "path": [
+                                "users",
+                                "63348de5467fb6d6385cd705"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Show Current User",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/users/showMe",
+                            "path": [
+                                "users",
+                                "showMe"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update User",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/users/updateUser",
+                            "path": [
+                                "users",
+                                "updateUser"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"email\":\"foo@gmail.com\",\n    \"name\":\"bar\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update Password",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/users/updateUserPassword",
+                            "path": [
+                                "users",
+                                "updateUserPassword"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"oldPassword\":\"secret\",\n    \"newPassword\":\"newsecret\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Products",
+            "item": [
+                {
+                    "name": "Get Single Product",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products/634086c7f07286ab72ab9e91/",
+                            "path": [
+                                "products",
+                                "634086c7f07286ab72ab9e91"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Upload Image",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products/uploadImage",
+                            "path": [
+                                "products",
+                                "uploadImage"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image",
+                                    "src": "D:\\WebDesign Bootcamp\\Node Projects\\07-file-upload\\starter\\images\\computer-2.jpeg",
+                                    "type": "file"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Products",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products",
+                            "path": [
+                                "products"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Product",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products",
+                            "path": [
+                                "products"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "    {\n    \"name\": \"albany sectional\",\n    \"price\": 109999,\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/0be1af59cf889899b5c9abb1e4db38a4/d631ac52\",\n    \"colors\": [\"#000\", \"#ffb900\"],\n    \"company\": \"liddy\",\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\n    \"category\": \"kitchen\"\n  }\n"
+                        }
+                    }
+                },
+                {
+                    "name": "Update Product",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products/633a9a220e2e4be58b2ce365",
+                            "path": [
+                                "products",
+                                "633a9a220e2e4be58b2ce365"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"name\":\"New Product\",\n    \"price\":200\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Product",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products/634086c7f07286ab72ab9e91",
+                            "path": [
+                                "products",
+                                "634086c7f07286ab72ab9e91"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Single Product Review",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/products/63412a5b64d3690546fcc829/reviews",
+                            "path": [
+                                "products",
+                                "63412a5b64d3690546fcc829",
+                                "reviews"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Review",
+            "item": [
+                {
+                    "name": "Get All Reviews",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/reviews",
+                            "path": [
+                                "reviews"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Single Review",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/reviews/633c1bd5248f04034aaf372f",
+                            "path": [
+                                "reviews",
+                                "633c1bd5248f04034aaf372f"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Review",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/reviews/6343e2e4667c2a3efd085ffb",
+                            "path": [
+                                "reviews",
+                                "6343e2e4667c2a3efd085ffb"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{ \n    \"rating\":3.5,\n    \"title\":\"Good one\",\n    \"comment\": \"Perfect for regular usage\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Review",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/reviews/63412b0c64d3690546fcc82e",
+                            "path": [
+                                "reviews",
+                                "63412b0c64d3690546fcc82e"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Review",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/reviews",
+                            "path": [
+                                "reviews"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"product\":\"634540b2ca60e876c0885bee\",\n    \"rating\":3.1,\n    \"title\":\"Didn't meet expectations\",\n    \"comment\": \"Got damaged product\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Orders",
+            "item": [
+                {
+                    "name": "Get Single Order",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/orders/63455c2da2c83e28c7e653b1",
+                            "path": [
+                                "orders",
+                                "63455c2da2c83e28c7e653b1"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get All Orders",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/orders",
+                            "path": [
+                                "orders"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Current User Orders",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/orders/showAllMyOrders",
+                            "path": [
+                                "orders",
+                                "showAllMyOrders"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Order",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/orders",
+                            "path": [
+                                "orders"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"tax\": 399,\n    \"shippingFee\": 499,\n    \"items\": [\n      {\n        \"name\": \"accent chair\",\n        \"price\": 2599,\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\n        \"amount\": 34,\n        \"product\": \"634540b2ca60e876c0885bee\"\n      },\n       {\n        \"name\": \"accent chair\",\n        \"price\": 2599,\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\n        \"amount\": 10,\n        \"product\": \"63412a5b64d3690546fcc829\"\n      }\n  ]\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update Order",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "localhost:3000/api/v1/orders/6345508827ec635f898b75bd",
+                            "path": [
+                                "orders",
+                                "6345508827ec635f898b75bd"
+                            ],
+                            "host": [
+                                "localhost:3000/api/v1"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"paymentIntentId\":\"someRandomValue\"\n}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

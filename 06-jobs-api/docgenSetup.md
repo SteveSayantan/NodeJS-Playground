@@ -19,13 +19,9 @@ Download its binary file (windows_amd64.exe) for windows from [here](https://git
 
 ## SetUp :
 
-It only works with Postman JSON Collections. We generate collection (a JSON file ) by clicking on `...` beside the name of the collection and `Export`.
+- It only works with **Postman** JSON Collections. In Postman, we generate collection (a JSON file ) by clicking on `...` beside the name of the collection and `Export`.
 
-- Either, you have to download Postman locally, test the API, generate the collection
-
-    **OR** 
-
-- make a collection separately with the help of Postman Web after publishing your API and generate the collection.
+    - Instead, we can use Thunder Client and generate JSON using `Convert to Postman` option by clicking on `...` .  
 
 - Run `docgen build -i <INPUT_FILE_PATH> -o <OUTPUT_FILE_PATH>` command for generating the html file from the collection (docs.json). For example:
 

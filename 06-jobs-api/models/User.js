@@ -35,7 +35,7 @@ UserSchema.pre('save', async function(next){ //This pre method is a middleware f
     const salt= await bcrypt.genSalt(10); //This method generates random bytes which is used to hash our password. In this case, it will generate 10 random bytes. Giving a large value will consume a lot of processing power
     const hashedPassword= await bcrypt.hash(this.password, salt); //This creates our hased password, it takes two args. Once anything is hashed, it can not be reverted to its original form
 
-    this.password= hashedPassword; //As we are using this keyword, it is necessary to use traditional functions
+    this.password= hashedPassword; //As we are using this keyword, it is necessary to use traditional functions. 'this' refers to the document being saved.
 
     // next(); //As we are using async function we need not to call the next method (as per the docs)
 })

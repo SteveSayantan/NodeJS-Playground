@@ -68,7 +68,7 @@ const ProductSchema= new mongoose.Schema({
 
 
 
-},{timestamps:true,toJSON:{virtuals:true},toObject:{virtuals:true}})    //To enable the virtual populating, we need to pass these properties.
+},{timestamps:true,toJSON:{virtuals:true},toObject:{virtuals:true}})    // To include virtuals in res.json(), we set the toJSON. To include virtuals in console.log(), we set the toObject.
 
 /* 
     In Review Schema, we had 'user' and 'product' properties already existing which later are used for populating. But here, we do not have 'reviews' property in Product Schema,
@@ -113,6 +113,8 @@ ProductSchema.virtual('reviews',{   // 'reviews' is the name of the virtual prop
 ProductSchema.pre('remove', async function(next){   // This hook listens for remove event for each product
 
     await this.model('Review').deleteMany({product:this._id}); //Using this.model we can access other models too (from a model). Delete the reviews which contain 'product' property equal to _id of product being deleted.
+
+    // this refers to the document being saved. Since every Document is an instance of a Model, it can use model() present in Model prototype.
 })
 
 
