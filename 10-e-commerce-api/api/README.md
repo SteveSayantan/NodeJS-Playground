@@ -1,6 +1,6 @@
 ## Hosted Project
 
-[E-Commerce API Heroku URL](https://e-commerce-api-10.herokuapp.com/)
+[E-Commerce API Render URL](https://e-commerce-api-2qrb.onrender.com/)
 
 ## Workflow
 
@@ -131,5 +131,13 @@
 - [ ] Create a Schema for a single item and another one for containing all the items as an entire order. 
 
 - [ ] Create controllers and routes with suitable middlewares. 
+
+### Hosting on Render
+
+- Refer to ![Render Hosting Configuration](./render-config.JPG)
+
+- Add .env variables
+
+- Deploy
 
 
