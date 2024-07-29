@@ -18,7 +18,8 @@ const getAllProducts= async (req,res)=>{
 const getSingleProduct= async (req,res)=>{
     const{id:productId}=req.params;
 
-    const product= await Product.findOne({_id:productId}).populate('reviews')   //There is no such property in the product model, basically it is a virtual property which we are adding to get the reviews for a specific product. This process is known as virtual populate. As this is a virtual property, we get all the reviews, not having the option to get a specific review. 
+    //Here, we are populating the virtual property 'reviews', at runtime.
+    const product= await Product.findOne({_id:productId}).populate('reviews')   // As this is a virtual property, we get all the reviews, not having the option to get a specific review. 
 
     if(!product){
         throw new CustomError.NotFoundError(`No product with id:${productId}`)

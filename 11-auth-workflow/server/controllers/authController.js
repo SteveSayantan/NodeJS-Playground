@@ -25,7 +25,7 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, email, password, role,verificationToken });
 
-  const origin='http://localhost:3000' // As we have our frontend at 3000 port. For production, we will set the value of origin to our server url.
+  const origin='http://localhost:3000' // As we have our frontend at 3000 port. For production, we will set the value of origin to our frontend url.
 
 
 /* 
@@ -189,7 +189,7 @@ const resetPassword= async(req,res)=>{
 /* 
   1. In the E-commerce Project, we had been sending cookies right after registration.
 
-  2. But, here, after registering we send a token via the link provided in the verification email and the user has to send  the token again to get his email verified. Once verified, the user can log in using the login route and get his token to access the protected routes.
+  2. But, here, after registering we send a verification-token via the link provided in the verification email and the user has to send that verification-token again to get his email verified. Once verified, the user can log in using the login route and get his token to access the protected routes.
 
   3. There are two types of tokens i.e. AccessToken and RefreshToken used in this project. The former has less expiration time (e.g. one day) than the latter (e.g. thirty days). 
 

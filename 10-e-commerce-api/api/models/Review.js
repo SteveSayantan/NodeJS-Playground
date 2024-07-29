@@ -34,7 +34,7 @@ const ReviewSchema= new mongoose.Schema({
 ReviewSchema.index({user:1,product:1},{unique:true})  // we want the index entries to be stored in ascending sorted order of user and product.  
     
 // However, setting the 'unique' property separately on both of these would stop a user to provide reviews for different products and storing more than one review for a product. Details: https://www.mongodb.com/docs/manual/indexes/
-
+// Make sure to remove the existing documents and restart the connection to trigger index build.
 
 
 // All of the subsequent 'this' refers to a Review document .
@@ -77,12 +77,13 @@ ReviewSchema.statics.calculateAvgRating = async function (productId){       // U
 
 ReviewSchema.post('save', async function(){ // ** This hook is invoked after creating a new review or while using review.save() after updating some properties of a review **
 
-    await this.model('Review').calculateAvgRating(this.product) // calling the calculateAvgRating function created on the model. It takes the product property of a Review document as an arg.
+    await this.constructor.calculateAvgRating(this.product) // calling the calculateAvgRating function created on the model. 'this' refer a document, 'this.constructor' refers to the model. 
+    //We could have used "this.model('Review')" also, instead of 'this.constructor'.
 })
 
 ReviewSchema.post('remove', async function(){ // ** This hook is invoked after deleting a review **
 
-     await this.model('Review').calculateAvgRating(this.product)
+     await this.constructor.calculateAvgRating(this.product)
 })
 
 

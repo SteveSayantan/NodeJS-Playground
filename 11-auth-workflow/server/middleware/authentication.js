@@ -13,7 +13,7 @@ const authenticateUser = async (req, res, next) => {
       const payload= isTokenValid(accessToken);
       req.user= payload.user;
       return next();
-   }
+    }
    const payload= isTokenValid(refreshToken); // If no refreshToken is present, it will throw error
    const existingToken = await Token.findOne({user:payload.user.userId,refreshToken:payload.refreshToken})
 

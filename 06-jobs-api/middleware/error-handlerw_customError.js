@@ -1,5 +1,5 @@
 /* 
- Here we handle three types of Mongoose Errors:
+ Here we handle three types of Mongoose Errors: (Checkout https://mongoosejs.com/docs/api/error.html#Error.prototype.name)
 
  1. Duplicate Error (When user tries to register an email already there)
 

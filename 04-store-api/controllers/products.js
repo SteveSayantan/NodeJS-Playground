@@ -65,7 +65,7 @@ const getAllProducts= async (req,res)=>{
        result=result.sort(sortList);
     }
     else{ //If user does not pass any sort query, products will be sorted acc. to date of creation
-        result=result.sort("CreatedAt")
+        result=result.sort("createdAt")
     }
 
     //Select Method (To choose which fields to be displayed. Ex./api/v1/products?fields=name,price,rating displays only the name,price and rating of all the products)

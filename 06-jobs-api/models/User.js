@@ -28,7 +28,7 @@ const UserSchema= new mongoose.Schema({
     }
 })
 
-//Refer to https://mongoosejs.com/docs/middleware.html#pre for any query
+//Refer to https://mongoosejs.com/docs/middleware.html for any query, also read about four types of middlewares.
 
 UserSchema.pre('save', async function(next){ //This pre method is a middleware function, with the help of which we can do some work before saving (creating) the created user. As it is a middleware, it takes next method as an argument
 
@@ -51,7 +51,7 @@ UserSchema.methods.createJWT=function() { //createJWT is a custom method of user
 
     return jwt.sign({userId:this._id,name:this.name},process.env.JWT_SECRET,{expiresIn:'30d'}) // Read about this expiresIn option at https://www.npmjs.com/package/jsonwebtoken
 
- //Here this refers to the user created from this schema
+ //Here this refers to the document created from the model which uses this schema
 }
 
 

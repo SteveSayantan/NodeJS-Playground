@@ -37,7 +37,8 @@ const ProductSchema= new mongoose.Schema({
     colors:{
         type:[String],   //It is an array containing strings. 
         default:['#222',],  //By default, it is going to be set as an empty array. To prevent that, we provide some values
-        required:true
+
+        // since, we have provided a default value, we need not use "required" validator for this path.
     },
     featured:{
         type:Boolean,
@@ -71,10 +72,10 @@ const ProductSchema= new mongoose.Schema({
 },{timestamps:true,toJSON:{virtuals:true},toObject:{virtuals:true}})    // To include virtuals in res.json(), we set the toJSON. To include virtuals in console.log(), we set the toObject.
 
 /* 
-    In Review Schema, we had 'user' and 'product' properties already existing which later are used for populating. But here, we do not have 'reviews' property in Product Schema,
-    hence we have to do the following song and dance for creating that property virtually.
+    In Review Schema, we had 'user' and 'product' properties already existing which later are used for populating ( i.e. bringing actual documents from the reference ). 
+    But here, we do not have 'reviews' property in Product Schema, so we create that property virtually.
 
-    Now, populating that virtual property is called virtual populating. 
+    Now, populating that virtual property later at runtime is called virtual populating. 
 */
 ProductSchema.virtual('reviews',{   // 'reviews' is the name of the virtual property. This name should be the same in productController @ line 21
    
@@ -98,9 +99,13 @@ ProductSchema.virtual('reviews',{   // 'reviews' is the name of the virtual prop
 })
 
 /* 
-    Why do we need to populate virtual properties?
+    Why do we need virtual properties?
 
-    There could be innumerable reviews for a single product. If we want each product to store those reviews, it will create performance issues. Instead, we have designed our review model to store their user, but user model should not store all reviews. We will populate reviews virtually.
+    There could be innumerable reviews for a single product. If we want each product to store those reviews, it will create performance issues. Instead, we have designed our review model to store their user, but user model should not store all reviews. 
+    
+    Hence, we create a virtual property (  which is not physically available ) in Product schema, named as 'reviews'. 'reviews' refer to the reviews with a particular product_id.
+    
+    Later, we populate ( i.e. bring actual documents from the reference ) 'reviews' at run time via populate(). This process is called populate virtuals.
 
     For details https://mongoosejs.com/docs/populate.html#populate-virtuals
 

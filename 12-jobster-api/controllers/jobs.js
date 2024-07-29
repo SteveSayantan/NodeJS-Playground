@@ -132,7 +132,7 @@ const showStats=async(req,res)=>{
             '_id': {    // As per docs, _id can be an expression object of form { <field1>: <expression1>, ... } 
             /*
                 <field> can be named anything, but <expression> have the form { <operator>: <argument> }
-                in the example below, 'year' is the field, and {'$year': '$createdAt' is <expression>}
+                in the example below, 'year' is the field, and {'$year': '$createdAt'} is <expression>
             */
               'year': {
                 '$year': '$createdAt'
