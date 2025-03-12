@@ -38,12 +38,18 @@ const attachCookiesToResponse= ({res,user})=>{
 
     4. Cookies can only be sent within the same domain. E.g., if we have our frontEnd running on localhost:3000 and our backEnd running on localhost:5000, we can not send cookies from our backend to our frontend. 
 
-    5. **If our front-end is using Create-react-app**, and is hosted on a different server(e.g. localhost 3000) ,we can set a "proxy" (use quotes) property at the last line of package.json (of the React app) as "http://127.0.0.1:5000" (the url of our backend). After this, we can simply write "/api/v1/auth" for making request from the React frontend (hosted on localhost 3000). No need not add "http://localhost:5000" before each url in the frontend code for making request to the server located on port 5000.
+    5. **If our front-end is using Create-react-app**, and is hosted on a different server(e.g. localhost 3000) ,we can set a "proxy" (use quotes) property at the last line of package.json (of the React app) as "http://127.0.0.1:5000" (the url of our backend). After this, we can simply write "/api/v1/auth" for making request from the React frontend (hosted on localhost 3000). 
+    No need not add "http://localhost:5000" before each url in the frontend code for making request to the server located on port 5000.
 
-    6. We can also send and receive cookies to different domain with the setup mentioned above. (Only applicable if front-end is using create-React app)
+    6. We can also send and receive cookies to different domain with the setup mentioned above.
 
-    7. The above two points are applicable only during the development phase. In production, we have to use different setup as per the platform. 
-        E.g., we have to create a _redirects file in our publish directory and specify the proxy rules in it. For details, checkout lecture-295 of Node Course. Ref: https://docs.netlify.com/routing/redirects/rewrites-proxies/
+    7. Similarly, we can use the proxy option for vite builds also. Check the docs https://vite.dev/config/server-options#server-proxy for details.
+
+    8. This works because when we request to the server using frontend, the server considers this request as a Same-Origin request and agrees to share resources.
+
+    9. The above steps are applicable only during the development phase.
+    
+    10. In production, such approach is not useful as third-party cookies are not allowed by the browser.
 
 */
 

@@ -69,7 +69,7 @@ start();
 
   1. Helmet sets various http headers to prevent numerous possible attacks
 
-  2. CORS ensures the accessibility of our api from different domain. CORS (Cross Origin Resource Sharing) is a mechanism to allow or restrict requested resources on a web server depending on where the http-request was initiated. Without this, we can only access our api from the same domain where it is hosted.
+  2. CORS ensures the accessibility of our api from different domain. CORS (Cross Origin Resource Sharing) is a HTTP-header based mechanism to allow or restrict requested resources on a web server depending on where the http-request was initiated. Without this, we can only access our api from the same domain where it is hosted. Check out https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
   3. xss-clean sanitizes the user input in req.body , req.query and req.params to protect us from cross-side scripting attacks performed by injecting malicious code
   

@@ -19,21 +19,21 @@ const getAllJobs= async(req,res)=>{
         queryObject.status = status;
     }
     if (jobType && jobType !== 'all') {
-    queryObject.jobType = jobType;
+      queryObject.jobType = jobType;
     }
     let result= Job.find(queryObject);
     // sorting the data conditionally
     if (sort === 'latest') {
-        result = result.sort('-createdAt');
+      result = result.sort('-createdAt');
     }
     if (sort === 'oldest') {
-    result = result.sort('createdAt');
+      result = result.sort('createdAt');
     }
     if (sort === 'a-z') {
-    result = result.sort('position');
+      result = result.sort('position');
     }
     if (sort === 'z-a') {
-    result = result.sort('-position');
+      result = result.sort('-position');
     }
 
     // setting up pagination
@@ -106,18 +106,18 @@ const showStats=async(req,res)=>{
     // console.log(stats);     // [ { _id: 'declined', count: 16 }, { _id: 'interview', count: 14 }, { _id: 'pending', count: 5 }]
 
     stats = stats.reduce((acc, curr) => {  // we apply reduce method on the received array
-        const { _id: title, count } = curr;
-        acc[title] = count;
-        return acc;
+      const { _id: title, count } = curr;
+      acc[title] = count;
+      return acc;
     }, {});
 
     // console.log(stats);     //{ declined: 16, interview: 14, pending: 5 }
     
     // creating another object for avoiding empty values in case of new users
     const defaultStats = {
-    pending: stats.pending || 0,
-    interview: stats.interview || 0,
-    declined: stats.declined || 0,
+      pending: stats.pending || 0,
+      interview: stats.interview || 0,
+      declined: stats.declined || 0,
     };
 
     let monthlyApplications= await Job.aggregate([

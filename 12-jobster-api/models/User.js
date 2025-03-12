@@ -31,13 +31,13 @@ const UserSchema= new mongoose.Schema({
         trim: true,
         maxlength: 20,
         default: 'lastName',
-      },
-      location: {
+    },
+    location: {
         type: String,
         trim: true,
         maxlength: 20,
         default: 'my city',
-      }
+    }
 })
 
 //Refer to https://mongoosejs.com/docs/middleware.html#pre for any query

@@ -70,7 +70,13 @@ start();
   
   3. Now, we have to serve the requests that come to the api, as well as the ones that come to our frontend.
 
-  4. To achieve that by allowing our frontend to accept all the 'GET' requests (even the invalid ones) that do not go to the api routes.
+  4. We achieve that by allowing our frontend to accept all the 'GET' requests (even the invalid ones) that do not go to the api routes.
 
-  5. But if no suitable path is found for serving a request (except 'GET' ), the request is handled by notfoundmiddleware finally.
+      From backend, whenever we serve static files that are linked internally, there is a chance of getting not-found error while refreshing the page.
+       Suppose, we are on the 'about' page of our front-end app (say, localhost:3000/about ) that is statically served using node. Now, if we hit the refresh,
+       we get a NotFound Error as the server makes a GET req to `localhost:3000/about` which does not exist in the backend.
+
+    Using this trick, we can avoid it also.
+
+  5. But if no suitable route is found for serving a request (except 'GET' ), the request is handled by notfoundmiddleware finally.
 */
